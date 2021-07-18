@@ -8,10 +8,11 @@ namespace AspNetCoreProject.Core.Repositories
 {
     public interface IRepository<T> where T : class
     {
+        // Asenkron(Task)= senkron(void) anlamına gelir 
         Task<T> GetByIdAsync(int id);
         Task<IEnumerable<T>> GetAllAsync();
         //find. Linq kullanmak için
-        Task<IEnumerable<T>> Find(Expression<Func<T, bool>> filter);
+        IEnumerable<T> Where(Expression<Func<T, bool>> filter);
         Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> filter);
         Task AddAsync(T entity);
         Task AddRangeAsync(IEnumerable<T> entities);

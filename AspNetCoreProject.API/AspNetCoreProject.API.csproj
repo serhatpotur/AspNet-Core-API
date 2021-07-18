@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\AspNetCoreProject.Core\AspNetCoreProject.Core.csproj" />
     <ProjectReference Include="..\AspNetCoreProject.Data\AspNetCoreProject.Data.csproj" />
     <ProjectReference Include="..\AspNetCoreProject.Service\AspNetCoreProject.Service.csproj" />
