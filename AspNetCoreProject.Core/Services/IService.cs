@@ -11,10 +11,10 @@ namespace AspNetCoreProject.Core.Services
         Task<T> GetByIdAsync(int id);
         Task<IEnumerable<T>> GetAllAsync();
         //find. Linq kullanmak için
-        Task<IEnumerable<T>> Find(Expression<Func<T, bool>> filter);
+        Task<IEnumerable<T>> Where(Expression<Func<T, bool>> filter);
         Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> filter);
-        Task AddAsync(T entity);
-        Task AddRangeAsync(IEnumerable<T> entities);
+        Task<T> AddAsync(T entity);
+        Task<IEnumerable<T>> AddRangeAsync(IEnumerable<T> entities);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entities);
         T Update(T entity);

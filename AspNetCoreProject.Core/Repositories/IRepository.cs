@@ -12,7 +12,7 @@ namespace AspNetCoreProject.Core.Repositories
         Task<T> GetByIdAsync(int id);
         Task<IEnumerable<T>> GetAllAsync();
         //find. Linq kullanmak için
-        IEnumerable<T> Where(Expression<Func<T, bool>> filter);
+        Task<IEnumerable<T>> Where(Expression<Func<T, bool>> filter);
         Task<T> SingleOrDefaultAsync(Expression<Func<T, bool>> filter);
         Task AddAsync(T entity);
         Task AddRangeAsync(IEnumerable<T> entities);

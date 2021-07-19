@@ -2,9 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCoreProject.Core.Repositories;
+using AspNetCoreProject.Core.Services;
 using AspNetCoreProject.Core.UnitOfWorks;
 using AspNetCoreProject.Data.Context;
+using AspNetCoreProject.Data.Repositories;
 using AspNetCoreProject.Data.UnitOfWorks;
+using AspNetCoreProject.Service.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,6 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using AutoMapper;
 
 namespace AspNetCoreProject.API
 {
@@ -30,11 +35,20 @@ namespace AspNetCoreProject.API
         // Servislerimi eklediðim methot
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(Startup));
+
+            // Bir interface ile karþýlaþýrsa ona karþýlýk gelen classý oluþtur dedik
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped(typeof(IService<>), typeof(Service<>));
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             /* Sql Servera Veri tabanýný ekledik.
              * Connection String dosyasýný appsettings.json içine yazdýk
             */
             services.AddDbContext<AppDbContext>(options =>
             {
+
                 //veri tabaný baðlantýsý
                 options.UseSqlServer(Configuration["ConnectionStrings:SqlConStr"].ToString(),
                     //o : SqlServer kullanýrken ki seçenekler gelir. Biz Migration kullanacaðýz
@@ -44,7 +58,6 @@ namespace AspNetCoreProject.API
                     });
 
             });
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddControllers();
         }
 

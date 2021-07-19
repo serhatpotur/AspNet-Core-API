@@ -31,9 +31,9 @@ namespace AspNetCoreProject.Data.Repositories
             await _dbSet.AddRangeAsync(entities);
         }
 
-        public IEnumerable<T> Where(Expression<Func<T, bool>> filter)
+        public async Task<IEnumerable<T>> Where(Expression<Func<T, bool>> filter)
         {
-            return _dbSet.Where(filter);
+            return await _dbSet.Where(filter).ToListAsync();
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
