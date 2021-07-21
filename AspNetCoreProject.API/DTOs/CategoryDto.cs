@@ -9,7 +9,7 @@ namespace AspNetCoreProject.API.DTOs
     public  class CategoryDto
     {
         public int CategoryID { get; set; }
-        [Required]
+        [Required(ErrorMessage ="{0} alanı boş bırakılamaz")]
         public string CategoryName { get; set; }
     }
 }

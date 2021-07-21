@@ -19,6 +19,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using AutoMapper;
+using AspNetCoreProject.API.Filters;
+using Microsoft.AspNetCore.Diagnostics;
+using AspNetCoreProject.API.DTOs;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
+using AspNetCoreProject.API.Extensions;
 
 namespace AspNetCoreProject.API
 {
@@ -35,6 +41,9 @@ namespace AspNetCoreProject.API
         // Servislerimi eklediðim methot
         public void ConfigureServices(IServiceCollection services)
         {
+            //NotFoundFilter
+            services.AddScoped<NotFoundFilter>();
+
             services.AddAutoMapper(typeof(Startup));
 
             // Bir interface ile karþýlaþýrsa ona karþýlýk gelen classý oluþtur dedik
@@ -58,7 +67,17 @@ namespace AspNetCoreProject.API
                     });
 
             });
-            services.AddControllers();
+
+            //ModelState hatalarýný AspNetCore deðil ben yönetmek istiyorum dedim
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+            services.AddControllers(option =>
+            {
+                // ValidationFilterý global seviyeye çýkardýk
+                option.Filters.Add(new ValidationFilter());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,6 +88,9 @@ namespace AspNetCoreProject.API
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            //Extensions methodumuz
+            app.UseCustomException();
 
             app.UseHttpsRedirection();
 

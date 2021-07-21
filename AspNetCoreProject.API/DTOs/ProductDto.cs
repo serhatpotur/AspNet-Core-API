@@ -9,11 +9,14 @@ namespace AspNetCoreProject.API.DTOs
     public class ProductDto
     {
         public int ProductID { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "{0} alanı boş bırakılamaz")]
         public string ProductName { get; set; }
-        [Required]
+
+        [Range(1, int.MaxValue, ErrorMessage = "{0} alanı 1 değerinden büyük bir değer olmalıdır.")]
         public int ProductStock { get; set; }
-        [Required]
+
+        [Range(1, double.MaxValue, ErrorMessage = "{0} 1 değerinden büyük olmalıdır")]
         public decimal ProductPrice { get; set; }
         [Required]
         public int CategoryID { get; set; }

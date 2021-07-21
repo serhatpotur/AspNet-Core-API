@@ -16,14 +16,20 @@ namespace AspNetCoreProject.API.Mapping
             CreateMap<Category, CategoryDto>();
             CreateMap<CategoryDto, Category>();
 
+            CreateMap<Category, CategoryWithProductDto>();
+            CreateMap<CategoryWithProductDto, Category>();
+
             CreateMap<Product, ProductDto>();
             CreateMap<ProductDto, Product>();
 
-            CreateMap<CategoryDto, CategoryWithProductDto>();
-            CreateMap<CategoryWithProductDto, CategoryDto>();
+            CreateMap<Product, ProductWithCategoryDto>();
+            CreateMap<ProductWithCategoryDto, Product>();
 
-            CreateMap<ProductDto, CategoryWithProductDto>();
-            CreateMap<CategoryWithProductDto, ProductDto>();
+            CreateMap<Person, PersonDto>();
+            CreateMap<PersonDto, Person>();
         }
+
+
+
     }
 }
