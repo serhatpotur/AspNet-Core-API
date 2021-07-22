@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreProject.API", "AspNetCoreProject.API\AspNetCoreProject.API.csproj", "{0F46D6C4-0F0F-4788-B3FE-0131B45575F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreProject.API", "AspNetCoreProject.API\AspNetCoreProject.API.csproj", "{0F46D6C4-0F0F-4788-B3FE-0131B45575F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreProject.Core", "AspNetCoreProject.Core\AspNetCoreProject.Core.csproj", "{DD57AD36-37DD-4628-B2BE-CAF8182A4786}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreProject.Core", "AspNetCoreProject.Core\AspNetCoreProject.Core.csproj", "{DD57AD36-37DD-4628-B2BE-CAF8182A4786}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreProject.Data", "AspNetCoreProject.Data\AspNetCoreProject.Data.csproj", "{A2AAB135-EE5E-4621-9BCF-5C976068E2DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreProject.Data", "AspNetCoreProject.Data\AspNetCoreProject.Data.csproj", "{A2AAB135-EE5E-4621-9BCF-5C976068E2DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreProject.Service", "AspNetCoreProject.Service\AspNetCoreProject.Service.csproj", "{53BFCE80-F36E-4A9D-B1A8-A572C449E0BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreProject.Service", "AspNetCoreProject.Service\AspNetCoreProject.Service.csproj", "{53BFCE80-F36E-4A9D-B1A8-A572C449E0BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreProject.Web", "AspNetCoreProject.Web\AspNetCoreProject.Web.csproj", "{866471BD-8FEE-4997-B5F6-37B0AFF30C7C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{53BFCE80-F36E-4A9D-B1A8-A572C449E0BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53BFCE80-F36E-4A9D-B1A8-A572C449E0BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53BFCE80-F36E-4A9D-B1A8-A572C449E0BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{866471BD-8FEE-4997-B5F6-37B0AFF30C7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{866471BD-8FEE-4997-B5F6-37B0AFF30C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{866471BD-8FEE-4997-B5F6-37B0AFF30C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{866471BD-8FEE-4997-B5F6-37B0AFF30C7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
