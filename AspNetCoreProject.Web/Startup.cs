@@ -1,19 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
-using AspNetCoreProject.Core.Repositories;
-using AspNetCoreProject.Core.Services;
-using AspNetCoreProject.Core.UnitOfWorks;
-using AspNetCoreProject.Data.Context;
-using AspNetCoreProject.Data.Repositories;
-using AspNetCoreProject.Data.UnitOfWorks;
-using AspNetCoreProject.Service.Services;
 using AspNetCoreProject.Web.Filters;
+using AspNetCoreProject.Web.ApiService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -33,19 +27,34 @@ namespace AspNetCoreProject.Web
         // Servislerimi eklediðim kýsým
         public void ConfigureServices(IServiceCollection services)
         {
+            // API ile haberleþme
+            services.AddHttpClient<CategoryApiService>(options=>
+            {
+                options.BaseAddress = new Uri(Configuration["baseUrl"]); //appsettings.json
+            });
+            services.AddHttpClient<ProductApiService>(options =>
+            {
+                options.BaseAddress = new Uri(Configuration["baseUrl"]); //appsettings.json
+            });
+
+
             services.AddScoped<NotFoundFilter>();
 
             services.AddAutoMapper(typeof(Startup));
 
             // Bir interface ile karþýlaþýrsa ona karþýlýk gelen classý oluþtur dedik
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-            services.AddScoped(typeof(IService<>), typeof(Service<>));
-            services.AddScoped<ICategoryService, CategoryService>();
-            services.AddScoped<IProductService, ProductService>();
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            /*
+             * Api katmaný eklediðimiz için artýk Service katmaný ile haberleþmiyoruz. Bu alana artýk gerek yok
+              services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+              services.AddScoped(typeof(IService<>), typeof(Service<>));
+              services.AddScoped<ICategoryService, CategoryService>();
+              services.AddScoped<IProductService, ProductService>();
+              services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             /* Sql Servera Veri tabanýný ekledik.
              * Connection String dosyasýný appsettings.json içine yazdýk
-            */
+            
             services.AddDbContext<AppDbContext>(options =>
             {
 
@@ -58,8 +67,12 @@ namespace AspNetCoreProject.Web
                     });
 
             });
+             */
+           
             services.AddControllersWithViews();
         }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         // Katmanlarýmý eklediðim methot

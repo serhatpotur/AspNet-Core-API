@@ -1,0 +1,40 @@
+﻿@model ProductDto
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">Yeni Ürün Ekle</h1>
+<div class="row">
+    <div class="col-md-6">
+
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="form-group">
+                <label asp-for="ProductName">Ürün Adı</label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductPrice">Ürün Fiyat</label>
+                <input asp-for="ProductPrice" class="form-control" />
+                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductStock">Ürün Stok</label>
+                <input asp-for="ProductStock" class="form-control" />
+                <span asp-validation-for="ProductStock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryID">Ürün Adı</label>
+                <input asp-for="CategoryID" class="form-control" />
+                <span asp-validation-for="CategoryID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <a asp-action="Index" class="btn btn-warning">Vazgeç</a>
+              <input type="submit" class="btn btn-primary" value="Ekle" />
+            </div>
+        </form>
+    </div>
+</div>
+

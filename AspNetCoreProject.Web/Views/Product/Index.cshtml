@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ProductDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center mb-3">Ürün Listesi</h1>
+<a asp-action="Create" class="btn btn-primary mb-3">Yeni Ürün Ekle</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Ürün Adı</th>
+            <th>Ürün Fiyat</th>
+            <th>Ürün Stok</th>
+            <th>Ürün Kategori</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductID</td>
+                <td>@item.ProductName</td>
+                <td>@item.ProductPrice</td>
+                <td>@item.ProductStock</td>
+                <td>@item.CategoryID</td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.ProductID" class="btn btn-danger">Sil</a>
+                    <a asp-action="Update" asp-route-id="@item.ProductID" class="btn btn-warning">Güncelle</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

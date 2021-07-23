@@ -1,5 +1,4 @@
-﻿using AspNetCoreProject.Core.Entities;
-using AutoMapper;
+﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +11,11 @@ namespace AspNetCoreProject.Web.Mapping
     {
         public MapProfile()
         {
+            /*
+             * Api katmanı eklediğimiz için artık Service katmanı ile haberleşmiyoruz. Bu alana artık gerek yok
+             * 
             //Category görürsen bunu CategoryDtoya dönüştür
+
             CreateMap<Category, CategoryDto>();
             CreateMap<CategoryDto, Category>();
 
@@ -26,7 +29,7 @@ namespace AspNetCoreProject.Web.Mapping
             CreateMap<ProductWithCategoryDto, Product>();
 
             CreateMap<Person, PersonDto>();
-            CreateMap<PersonDto, Person>();
+            CreateMap<PersonDto, Person>(); */
         }
 
 

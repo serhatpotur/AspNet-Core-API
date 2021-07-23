@@ -1,6 +1,5 @@
-﻿using AspNetCoreProject.Web.DTOs;
-using AspNetCoreProject.Core.Entities;
-using AspNetCoreProject.Core.Services;
+﻿using AspNetCoreProject.Web.ApiService;
+using AspNetCoreProject.Web.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
@@ -12,11 +11,16 @@ namespace AspNetCoreProject.Web.Filters
 {
     public class NotFoundFilter : ActionFilterAttribute
     {
+        /*Api katmanı eklediğimiz için artık Service katmanı ile haberleşmiyoruz.Bu alana artık gerek yok
+              private readonly ICategoryService _categoryService; 
+        */
+
         // Bu filter içinde bir DI(Dependency Injection) nesnesi (Interface) barındırdığı için bunu controller tarafında kullanamayız. Bu yüzden Startup.cs de tanımlayacağız
-        private readonly ICategoryService _categoryService;
-        public NotFoundFilter(ICategoryService categoryService)
+        private readonly CategoryApiService _categoryApiService;
+
+        public NotFoundFilter(CategoryApiService categoryApiService)
         {
-            _categoryService = categoryService;
+            _categoryApiService = categoryApiService;
         }
 
         //id isteyen Actionlar için kullanacağız
@@ -24,7 +28,7 @@ namespace AspNetCoreProject.Web.Filters
         {
 
             int id = (int)context.ActionArguments.Values.FirstOrDefault();
-            var product = await _categoryService.GetByIdAsync(id);
+            var product = await _categoryApiService.GetByIdAsync(id);
             if (product != null)
             {
                 // null değilse gelen request devam etmeli
